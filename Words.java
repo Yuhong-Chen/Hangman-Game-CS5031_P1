@@ -1,5 +1,3 @@
-package uk.ac.standrews.cs5031;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -43,7 +41,7 @@ public class Words {
         customwords = new ArrayList<String>();
 
         try {
-            FileReader file = new FileReader(wordsource);
+            FileReader file = new FileReader("wordsource");
             BufferedReader reader = new BufferedReader(file);
             line = reader.readLine();
             while (line != null) {

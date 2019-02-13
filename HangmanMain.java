@@ -1,5 +1,3 @@
-package uk.ac.standrews.cs5031;
-
 import java.util.Scanner;
 
 

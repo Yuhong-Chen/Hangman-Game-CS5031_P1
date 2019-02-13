@@ -1,5 +1,3 @@
-package uk.ac.standrews.cs5031;
-
 import java.util.Scanner;
 
 
@@ -18,7 +16,7 @@ public class Hangman {
 
         int singleGuessResult;
 
-        if (opts.wordsource == "") {
+        if (opts.getWordSource() == "") {
 
             System.out.println("  1. Scottish places");
             System.out.println("  2. Countries");
@@ -28,7 +26,7 @@ public class Hangman {
 
             g = new GameState(Words.randomWord(sc.nextInt()), opts.getMaxguesses(), opts.getMaxhints());
         } else {
-            g = new GameState(Words.randomWord(opts.wordsource), opts.getMaxguesses(), opts.getMaxhints());
+            g = new GameState(Words.randomWord(opts.getWordSource()), opts.getMaxguesses(), opts.getMaxhints());
         }
 
         while (!g.won() && !g.lost()) {

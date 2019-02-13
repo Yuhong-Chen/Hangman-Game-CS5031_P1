@@ -1,7 +1,5 @@
-package uk.ac.standrews.cs5031;
-
-
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Class to read user's command options about numbers of guesses and hints to be set.
@@ -15,10 +13,10 @@ public class CommandOpts {
     private  int maxguesses;
     private  int maxhints;
 
-    private static final int DEFAULT_MAX_GUESSES = 15;
+    private static final int DEFAULT_MAX_GUESSES = 10;
     private static final int DEFAULT_MAX_HINTS = 3;
 
-    public String wordsource;
+    private static String wordsource;
 
 
     /**
@@ -46,15 +44,23 @@ public class CommandOpts {
                 }
             }
             catch(NumberFormatException e){
-                System.out.println("Guesses and Hints must be positive integer! Default settings applied now.");
+                System.out.println("You may have missed input the value for guesses or hints? Default settings is applied now.");
             }
         }
     }
 
 
     boolean checkWordSourceIsFile(String wordsource) {
-        File f = new File(wordsource);
-        return (f.isFile());
+       try {
+           File f = new File(wordsource);
+           return true;
+       }catch (Exception e){
+           return false;
+       }
+    }
+
+    public String getWordSource() {
+        return wordsource;
     }
 
 

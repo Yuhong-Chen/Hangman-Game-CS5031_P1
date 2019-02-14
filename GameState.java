@@ -41,7 +41,7 @@ public class GameState {
 
         //Add all letters from TargetWord to "not" list
         for (int i = 0; i < target.length(); ++i) {
-            if (!not.contains(Character.toLowerCase(target.charAt(i))))
+            if (!not.contains(Character.toLowerCase(target.charAt(i))) && target.charAt(i)!= ' ')
                 not.add(Character.toLowerCase(target.charAt(i)));
         }
         hintAvailable = not;
@@ -70,50 +70,53 @@ public class GameState {
      */
     public int checkGuess() {
         char letterInput;
-
         System.out.print("Guess a letter or word (? for a hint): ");
-
         String input = sc.next().toLowerCase();
 
         if (input.length() > 1) {
-            recordShots();
             return checkByWord(input);
         }else {
             letterInput = input.charAt(0);
-            recordShots();
             return checkByLetter(letterInput);
         }
     }
 
 
-    private int checkByLetter(char letterInput){
+    public int checkByLetter(char letterInput){
         if(letterInput == '?') {
             provideHint();
+            recordShots();
             return 0;
         }
         for (int i = 0; i < not.size(); ++i) {
             if (not.get(i) == letterInput) {
                 not.remove(i);
                 got.add(letterInput);
+                recordShots();
                 return 1;
             }
         }
+        recordShots();
         return -1;
     }
 
 
-    private int checkByWord(String input){
+    public int checkByWord(String input){
         if (input.equals(TargetWord.toLowerCase())) {
             not.clear();
+            recordShots();
             return 1;
-        } else return -1;
+        } else {
+            recordShots();
+            return -1;
+        }
     }
 
-    boolean won() {
+    public boolean won() {
         return not.size() == 0;
     }
 
-    boolean lost() {
+    public boolean lost() {
         return not.size() > 0 && guessesLeft == 0;
     }
 
@@ -156,4 +159,10 @@ public class GameState {
     public int getHintsLeft(){
         return hintsLeft;
     }
+
+
+    public ArrayList getNot(){ return not; }
+
+
+    public ArrayList getGot(){ return got; }
 }

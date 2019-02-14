@@ -61,5 +61,16 @@ public class CommandOptsTest {
         assertEquals("",opts.getWordSource());
     }
 
+
+    @Test
+    @DisplayName("check for non-positive guesses and hints argument")
+    public void optionsPatternTest6 () {
+        String[] args = {"--guesses","0", "--hints","-1"};
+        CommandOpts opts = new CommandOpts(args);
+        assertEquals(10,opts.getMaxguesses());
+        assertEquals(3,opts.getMaxhints());
+        assertEquals("",opts.getWordSource());
+    }
+
 }
 

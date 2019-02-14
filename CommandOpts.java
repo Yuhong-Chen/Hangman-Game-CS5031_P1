@@ -44,7 +44,7 @@ public class CommandOpts {
                 }
             }
             catch(NumberFormatException e){
-                System.out.println("You may have missed input the value for guesses or hints? Default settings is applied now.");
+                System.out.println("You may have missed input the value for guesses or hints? Default settings are applied now.");
             }
         }
     }
@@ -69,7 +69,9 @@ public class CommandOpts {
     }
 
     public void setMaxguesses(int maxguesses) {
-        this.maxguesses = maxguesses;
+        if(maxguesses > 0) {
+            this.maxguesses = maxguesses;
+        }else {System.out.println("The max guesses must be a positive integer!Default settings are applied now.");}
     }
 
     public int getMaxhints() {
@@ -77,6 +79,8 @@ public class CommandOpts {
     }
 
     public void setMaxhints(int maxhints) {
-        this.maxhints = maxhints;
+        if(maxhints > 0) {
+            this.maxhints = maxhints;
+        }else {System.out.println("The max hints cannot be negative!Default settings are applied now.");}
     }
 }
